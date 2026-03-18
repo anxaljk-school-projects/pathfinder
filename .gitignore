@@ -1,0 +1,39 @@
+############################################
+# OS / Editor
+############################################
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/*
+!.vscode/settings.json
+.idea/
+
+############################################
+# Logs
+############################################
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+############################################
+# Node / TypeScript
+############################################
+node_modules/
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+.env
+.env.local
+.env.*.local
+
+############################################
+# General build / Other
+############################################
+dist/
+build/
+coverage/
+.nyc_output/
+*.js.map
+*.d.ts
