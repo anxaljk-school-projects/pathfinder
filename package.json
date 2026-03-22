@@ -1,0 +1,15 @@
+{
+  "name": "pathfinder",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "ts-node": "~10.9.2",
+    "typescript": "~5.9.2"
+  },
+  "dependencies": {
+    "vite": "~7.3.1"
+  }
+}
