@@ -90,3 +90,37 @@ There is no guarantee that GBFS will find the shortest path, either.
 Because GBFS only looks at the remaining distance to the goal and ignores how much effort it took to get to the current cell, it can be easily fooled by walls. It might spend a lot of time banging its head against a wall because that wall is "closer" to the goal, rather than walking around it.
 
 Except from that, GBFS has a memory trade-off, too. It has to keep track of the entire frontier, just like [BFS](#breadth-first-search-bfs) does, and it has to calculate the Manhattan distance on top of that.
+
+## A Star (A*)
+
+> Strategy type: informed search
+
+### 1. Cost functions
+
+A* doesn't just consider the [heuristic](#1-the-heuristic-function), but also how long it takes us to get to any particular state. That means A Star is going to explore the cell with the lowest value of $g(n) + h(n)$.
+
+* $g(n)$ is the cost to reach the (current) cell.
+* $h(n)$ is the estimated cost to the goal (the heuristic).
+
+Cost means how many cells we had to travel in this case.
+
+This project uses the Manhattan distance (read more about it [here](#1-the-heuristic-function)) as the heuristic for A*.
+
+In summary, A* search is going to make a choice at every decision point based on the sum of how many steps it took the algorithm to get to its current position and how far it estimates it is from the goal.
+
+Therefore, A* will always fid the best (shortest) path.
+
+The A* search handles the frontier with arrays, just like [GBFS](#greedy-best-first-search-gbfs) does.
+
+It also [avoids infinite loops](#2-avoiding-infinite-loops) with the same tactic the other algorithms use. The same goes for [finding the path](#3-finding-the-path).
+
+### 2. Upsides and downsides
+
+A* search is optimal if:
+
+* The heuristic never overestimates the true cost (it has to be admissible).
+* The heuristic needs to be consistent for every cell. This means that, after taking a step toward the goal, the heuristic value should have decreased.
+
+In general, you can say: "THe better the heuristic is, the better the algorithm will be able to solve the problem and the less it'll have to explore."
+
+A* search has a tendency to use quite a bit of memory, since it needs to keep constant track of the frontier and does a lot of calculations.

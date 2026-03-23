@@ -5,23 +5,24 @@ import { Events, EventType } from "../../../app/Events";
 import { PathfindingResult, PathfindingStrategy } from "../utils/PathfindingStrategy";
 import { manhattanDistance } from "../utils/manhattan-distance";
 
-class GreedyBestFirstSearch implements PathfindingStrategy {
-  public readonly name = "GBFS";
+class AStar implements PathfindingStrategy {
+  public readonly name = "A*";
 
   public async solve(maze: Maze, start: Vector, goal: Vector): Promise<PathfindingResult> {
     const frontier: Array<Vector> = [start];
     const explored = new Set<string>([start.key()]);
     const parent = new Map<string, Vector | null>([[start.key(), null]]);
+    const costFromStart = new Map<string, number>([[start.key(), 0]]);
     const exploredCells: Array<Vector> = [];
 
     while (frontier.length > 0) {
-      let minIndex = 0;
+      let bestIndex = 0;
       for (let i = 1; i < frontier.length; i++) {
-        if (manhattanDistance(frontier[i], goal) < manhattanDistance(frontier[minIndex], goal)) {
-          minIndex = i;
-        }
+        const candidateScore = costFromStart.get(frontier[i].key())! + manhattanDistance(frontier[i], goal);
+        const bestScore = costFromStart.get(frontier[bestIndex].key())! + manhattanDistance(frontier[bestIndex], goal);
+        if (candidateScore < bestScore) bestIndex = i;
       }
-      const currentCell = frontier.splice(minIndex, 1)[0];
+      const currentCell = frontier.splice(bestIndex, 1)[0];
 
       if (currentCell.key() === goal.key()) {
         const path: Array<Vector> = [];
@@ -38,8 +39,10 @@ class GreedyBestFirstSearch implements PathfindingStrategy {
       await new Promise(resolve => setTimeout(resolve, environment.strategyStepTimeout));
 
       for (const neighbor of maze.getFreeNeighbouringVectors(currentCell)) {
-        if (!explored.has(neighbor.key())) {
+        const newCostFromStart = costFromStart.get(currentCell.key())! + 1;
+        if (!explored.has(neighbor.key()) || newCostFromStart < costFromStart.get(neighbor.key())!) {
           explored.add(neighbor.key());
+          costFromStart.set(neighbor.key(), newCostFromStart);
           parent.set(neighbor.key(), currentCell);
           frontier.push(neighbor);
         }
@@ -50,4 +53,4 @@ class GreedyBestFirstSearch implements PathfindingStrategy {
   }
 }
 
-export const greedyBestFirstSearch = new GreedyBestFirstSearch();
+export const aStar = new AStar();
