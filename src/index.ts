@@ -7,6 +7,7 @@ import { Events, EventType } from "./app/Events";
 import { Vector } from "./core/maze/Vector";
 import { depthFirstSearch } from "./core/pathfinding/strategies/DepthFirstSearch";
 import { breadthFirstSearch } from "./core/pathfinding/strategies/BreadthFirstSearch";
+import { greedyBestFirstSearch } from "./core/pathfinding/strategies/GreedyBestFirstSearch";
 
 let maze: Maze | null = null;
 let mazeSolver: MazeSolver | null = null;
@@ -79,6 +80,7 @@ startSearchButton.addEventListener("click", async () => {
         mazeSolver.setStrategy(breadthFirstSearch);
         break;
       case "GBFS":
+        mazeSolver.setStrategy(greedyBestFirstSearch);
         break;
       case "A-star":
         break;
