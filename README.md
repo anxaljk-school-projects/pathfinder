@@ -21,4 +21,5 @@ Detailed information on the architecture and the algorithms used in this project
 
 Inspiration and ideas for this project come from the following sources:
 
+* https://youtu.be/WbzNRTTrX0g?si=8_PQgGdyeepYqhS2
 * https://tomcant.dev/posts/2021/09/introduction-to-pathfinding-with-mazes-and-breadth-first-search/

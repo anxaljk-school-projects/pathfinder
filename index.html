@@ -2,10 +2,82 @@
 <html>
     <head>
         <title>Maze</title>
+        <style>
+          body {
+            margin: 2rem;
+            font-family: Arial, Helvetica, sans-serif;
+          }
+
+          .controls {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+          }
+
+          .legend {
+            margin-bottom: 1rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+            flex-wrap: wrap;
+          }
+
+          .legend div {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.9rem;
+          }
+
+          .box {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+            border: 1px solid #333;
+          }
+
+          .start {
+            background-color: var(--start-color);
+          }
+
+          .goal {
+            background-color: var(--goal-color);
+          }
+
+          .explored {
+            background-color: var(--explored-color);
+          }
+
+          .path {
+            background-color: var(--path-color);
+          }
+        </style>
     </head>
     <body>
+    <div class="controls">
         <button id="generate">Generate Maze</button>
-        <canvas id="maze"></canvas>
-        <script type="module" src="./src/index.ts"></script>
+        <button id="generate-start">Random Start</button>
+        <button id="generate-goal">Random Goal</button>
+        <div>
+            <label for="algorithm">Choose the search algorithm:</label>
+            <select id="algorithm" name="algorithm">
+                <option value="DFS">DFS</option>
+                <option value="BFS">BFS</option>
+                <option value="GBFS">GBFS</option>
+                <option value="A-star">A*</option>
+            </select>
+        </div>
+        <button id="start-search">Start Search</button>
+        <button id="clear-path">Clear Path</button>
+    </div>
+    <canvas id="maze"></canvas>
+    <div class="legend">
+        <div><span class="box start"></span> Start</div>
+        <div><span class="box goal"></span> Goal</div>
+        <div><span class="box explored"></span> Explored</div>
+        <div><span class="box path"></span> Path</div>
+    </div>
+    <script src="./src/index.ts" type="module"></script>
     </body>
 </html>
