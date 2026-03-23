@@ -6,6 +6,7 @@ import { Maze } from "./core/maze/Maze";
 import { Events, EventType } from "./app/Events";
 import { Vector } from "./core/maze/Vector";
 import { depthFirstSearch } from "./core/pathfinding/strategies/DepthFirstSearch";
+import { breadthFirstSearch } from "./core/pathfinding/strategies/BreadthFirstSearch";
 
 let maze: Maze | null = null;
 let mazeSolver: MazeSolver | null = null;
@@ -73,17 +74,17 @@ startSearchButton.addEventListener("click", async () => {
     switch (searchAlgorithm.value) {
       case "DFS":
         mazeSolver.setStrategy(depthFirstSearch);
-        await mazeSolver.run();
         break;
       case "BFS":
+        mazeSolver.setStrategy(breadthFirstSearch);
         break;
       case "GBFS":
         break;
       case "A-star":
         break;
-      default:
-        alert("Please select the search algorithm first.");
     }
+
+    await mazeSolver.run()
   })
 })
 
