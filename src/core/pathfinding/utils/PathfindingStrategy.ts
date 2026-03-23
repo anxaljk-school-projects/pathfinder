@@ -7,6 +7,5 @@ export interface PathfindingResult {
 }
 
 export interface PathfindingStrategy {
-  name: string;
   solve(maze: Maze, start: Vector, goal: Vector): Promise<PathfindingResult>;
 }
