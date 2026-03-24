@@ -1,7 +1,7 @@
 import { Maze } from "../core/maze/Maze";
 import { Vector } from "../core/maze/Vector";
 
-export function generateMaze(width: number, height: number): Maze {
+export function generateMaze(width: number, height: number, loopFactor: number = 0): Maze {
   const maze = new Maze(width, height);
 
   /**
@@ -69,6 +69,41 @@ export function generateMaze(width: number, height: number): Maze {
    */
   grid[1][1] = 0;
   carve(1, 1);
+
+  /**
+   * After carving a perfect maze (one path between any two cells), optionally punch extra holes
+   * in walls to create loops (=multiple paths between start and goal).
+   *
+   * A "removable wall" is an interior wall cell with open path cells on both sides:
+   *   - horizontal: grid[y][x-1] and grid[y][x+1] are both open, x is even, y is odd
+   *   - vertical:   grid[y-1][x] and grid[y+1][x] are both open, x is odd, y is even
+   * Removing such a wall creates a new junction without touching the border.
+   * loopFactor (0–1) controls what fraction of removable walls get knocked down.
+   */
+  if (loopFactor > 0) {
+    const removableWalls: [number, number][] = [];
+
+    for (let y = 1; y < height - 1; y++) {
+      for (let x = 1; x < width - 1; x++) {
+        if (grid[y][x] !== 1) continue;
+        const isHorizontalWall = x % 2 === 0 && y % 2 === 1
+          && grid[y][x - 1] === 0 && grid[y][x + 1] === 0;
+        const isVerticalWall = x % 2 === 1 && y % 2 === 0
+          && grid[y - 1][x] === 0 && grid[y + 1][x] === 0;
+        if (isHorizontalWall || isVerticalWall) {
+          removableWalls.push([x, y]);
+        }
+      }
+    }
+
+    // Shuffle and remove the first loopFactor fraction of them
+    removableWalls.sort(() => Math.random() - 0.5);
+    const toRemove = Math.floor(loopFactor * removableWalls.length);
+    for (let i = 0; i < toRemove; i++) {
+      const [x, y] = removableWalls[i];
+      grid[y][x] = 0;
+    }
+  }
 
   // Iterates over every cell in the grid to convert the cells with the value 1 to Maze obstacles
   // We are using this obstacle approach because they are better for path finding and for large mazes

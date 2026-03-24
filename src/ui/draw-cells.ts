@@ -10,15 +10,15 @@ export function drawCell(position: Vector, color: string) {
   canvas.fillRect(position.x * environment.cellSize, position.y * environment.cellSize, environment.cellSize, environment.cellSize);
 }
 
-export function drawMaze(maze: Maze) {
+export function drawMaze(maze: Maze, mazeWidth: number, mazeHeight: number) {
   const canvasElement = document.getElementById("maze") as HTMLCanvasElement | null;
   if (!canvasElement) throw new Error("Canvas element #maze not found");
 
-  canvasElement.width = environment.mazeWidth * environment.cellSize;
-  canvasElement.height = environment.mazeHeight * environment.cellSize;
+  canvasElement.width = mazeWidth * environment.cellSize;
+  canvasElement.height = mazeHeight * environment.cellSize;
 
-  for (let y = 0; y < environment.mazeHeight; y++) {
-    for (let x = 0; x < environment.mazeWidth; x++) {
+  for (let y = 0; y < mazeHeight; y++) {
+    for (let x = 0; x < mazeWidth; x++) {
       drawCell(new Vector(x, y), maze.isObstacle(new Vector(x, y)) ? "black" : "white");
     }
   }

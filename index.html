@@ -9,14 +9,19 @@
           }
 
           .controls {
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             display: flex;
             gap: 1rem;
             align-items: center;
+            flex-wrap: wrap;
+          }
+
+          .maze-settings {
+            margin-bottom: 0.5rem;
           }
 
           .legend {
-            margin-bottom: 1rem;
+            margin: 0.5rem 0;
             display: flex;
             gap: 1.5rem;
             align-items: center;
@@ -71,6 +76,16 @@
         </div>
         <button id="start-search">Start Search</button>
         <button id="clear-path">Clear Path</button>
+    </div>
+    <div class="maze-settings">
+        <label for="loop-factor">Loops: <span id="loop-factor-value">0%</span></label>
+        <input type="range" id="loop-factor" min="0" max="100" value="0" step="5">
+    </div>
+    <div class="controls">
+        <span>Maze size:</span>
+        <button id="scale-down">-</button>
+        <span id="maze-dimensions">71 x 41</span>
+        <button id="scale-up">+</button>
     </div>
     <canvas id="maze"></canvas>
     <div class="legend">

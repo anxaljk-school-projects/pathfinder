@@ -1,6 +1,8 @@
 export const environment = {
-  mazeWidth: 71,
-  mazeHeight: 41,
+  mazeMaxWidth: 71,
+  mazeMaxHeight: 41,
+  mazeMinWidth: 13,
+  mazeMinHeight: 7,
   cellSize: 20,
 
   strategyStepTimeout: 10,
