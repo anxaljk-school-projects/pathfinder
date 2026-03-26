@@ -1,5 +1,5 @@
-import { Maze } from "../core/maze/Maze";
-import { Vector } from "../core/maze/Vector";
+import { Maze } from "@/core/maze/Maze";
+import { Vector } from "@/core/maze/Vector";
 
 export function generateMaze(width: number, height: number, loopFactor: number = 0): Maze {
   const maze = new Maze(width, height);

@@ -1,7 +1,7 @@
 import { Vector } from "../../maze/Vector";
 import { Maze } from "../../maze/Maze";
-import { environment } from "../../../app/environment";
-import { Events, EventType } from "../../../app/Events";
+import { environment } from "@/app/environment";
+import { Events, EventType } from "@/app/Events";
 import { PathfindingResult } from "./PathfindingStrategy";
 
 export async function search(

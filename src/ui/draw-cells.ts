@@ -1,6 +1,6 @@
-import { Vector } from "../core/maze/Vector";
-import { Maze } from "../core/maze/Maze";
-import { environment } from "../app/environment";
+import { Vector } from "@/core/maze/Vector";
+import { Maze } from "@/core/maze/Maze";
+import { environment } from "@/app/environment";
 
 const canvas = (document.getElementById("maze") as HTMLCanvasElement).getContext("2d")!;
 

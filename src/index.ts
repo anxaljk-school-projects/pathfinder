@@ -1,14 +1,14 @@
-import { generateMaze } from "./ui/maze-generator";
-import { environment } from "./app/environment";
-import { MazeSolver } from "./app/MazeSolver";
-import { drawCell, drawMaze } from "./ui/draw-cells";
-import { Maze } from "./core/maze/Maze";
-import { Events, EventType } from "./app/Events";
-import { Vector } from "./core/maze/Vector";
-import { depthFirstSearch } from "./core/pathfinding/strategies/DepthFirstSearch";
-import { breadthFirstSearch } from "./core/pathfinding/strategies/BreadthFirstSearch";
-import { greedyBestFirstSearch } from "./core/pathfinding/strategies/GreedyBestFirstSearch";
-import { aStar } from "./core/pathfinding/strategies/AStar";
+import { generateMaze } from "@/ui/maze-generator";
+import { environment } from "@/app/environment";
+import { MazeSolver } from "@/app/MazeSolver";
+import { drawCell, drawMaze } from "@/ui/draw-cells";
+import { Maze } from "@/core/maze/Maze";
+import { Events, EventType } from "@/app/Events";
+import { Vector } from "@/core/maze/Vector";
+import { depthFirstSearch } from "@/core/pathfinding/strategies/DepthFirstSearch";
+import { breadthFirstSearch } from "@/core/pathfinding/strategies/BreadthFirstSearch";
+import { greedyBestFirstSearch } from "@/core/pathfinding/strategies/GreedyBestFirstSearch";
+import { aStar } from "@/core/pathfinding/strategies/AStar";
 
 let mazeSolver: MazeSolver | null = null;
 let maze: Maze | null = null;

@@ -1,7 +1,7 @@
-import { Maze } from '../core/maze/Maze';
-import { PathfindingStrategy } from '../core/pathfinding/utils/PathfindingStrategy';
+import { Maze } from '@/core/maze/Maze';
+import { PathfindingStrategy } from '@/core/pathfinding/utils/PathfindingStrategy';
 import { Events, EventType } from './Events';
-import { Vector } from "../core/maze/Vector";
+import { Vector } from "@/core/maze/Vector";
 
 export class MazeSolver {
   private readonly maze: Maze;
@@ -25,7 +25,6 @@ export class MazeSolver {
 
   setStrategy(newStrategy: PathfindingStrategy) {
     this.strategy = newStrategy;
-    Events.emit(EventType.STRATEGY_CHANGED, this.strategy.name);
   }
 
   async run() {
